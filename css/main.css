@@ -99,6 +99,7 @@ textarea {
    ========================================================================== */
 body {
   background: #D4D4D4!important;
+  font-size: 1.1em;
 }
 
 /*General*/
@@ -107,10 +108,6 @@ body {
   text-align: center;
   color: #8db0f3;
   line-height: 1;
-}
-
-.content {
-  height: 100px;
 }
 
 /*Botones*/
@@ -186,19 +183,13 @@ div.menu span{
   letter-spacing: 10px;
 }
 
-.content p {
+#intro p {
   font-size: 1.3em;
   letter-spacing: 5px;
 }
 
-.cuerpo:nth-child(3n-1) {
-  background: #b3d4fc;
-  text-align: left;
-  color: #2515c1;
-  box-shadow: 0 0 10px;
-}
-
-.cuerpo {
+/*Cuerpo de la pagina*/
+.caja {
   margin-top: 10px;
   background-color: #3f369e;
   text-align: right;
@@ -207,11 +198,37 @@ div.menu span{
   padding: 30px 50px;
 }
 
-.cuerpo:nth-child(1) {
-  margin-top: 0;
+.caja:nth-child(3n-1) {
+  background: #b3d4fc;
+  text-align: left;
+  color: #2515c1;
+  box-shadow: 0 0 10px;
 }
 
+.caja:nth-child(1) {
+  margin-top: 0;
+  text-align: center;
+}
+
+div.caja h2 {
+  font-size: 1.7em;
+  text-transform: uppercase;
+
+}
+
+div.caja p {
+  font-size: 1.2em;
+  letter-spacing: 3px;
+
+}
+
+
 /*boton iniciar*/
+#empezar {
+  height: 85px;
+}
+
+
 .content div.button {
   padding-top: 30px;
 }
@@ -227,7 +244,6 @@ div.button a {
 
 div.button a:hover {
   background-color: rgba(41, 107, 181, 0.82);
-
 }
 
 
