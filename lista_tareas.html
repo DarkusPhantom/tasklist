@@ -32,45 +32,66 @@
       <span></span>
       <span></span>
     </div>
-    <div id="menu-lateral">
+    <div id="menu-lateral"><!--Menu Lateral-->
       
-    </div>
+    </div><!--Menu Lateral-->
   </header>
   
-  <!--contenido cuerpo-->
-  <div class="container">
-    <div class="content" id="intro">
-      <h2>Bienvenido a TaskList</h2>
-      <p>La lista de tareas que motiva tu productividad</p>
-    </div>
-  </div>
+  <!--Contenido de la pagina-->
+  <div class="contenedor">
+   <div class="encabezado" id="intro">
+     <h2>Lista de Tareas</h2>
+   </div><!--Intro-->
 
-  <div class="container">
-    <div class="content caja" id="informacion">
-      <h2>Nuestra App</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, placeat, provident. Laboriosam quos voluptatibus enim assumenda! Molestiae ratione consequuntur enim mollitia laborum ipsum id cumque quasi illo placeat architecto, provident!</p>
-    </div>
+   <div class="campo" id="add_task">
+    <input type="text" name="introducir_tarea" id="introducir_tarea" placeholder="Introduce una tarea....">
+   </div><!--Campo para introducir tarea-->
 
-    <div class="content caja" id="funcion">
-      <h2>Funciones</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, placeat, provident. Laboriosam quos voluptatibus enim assumenda! Molestiae ratione consequuntur enim mollitia laborum ipsum id cumque quasi illo placeat architecto, provident!</p>
-    </div>
+   <nav class="nav_calendario">
+      <a class="active" href="#">Hoy</a>
+      <a href="#">Semanal</a>
+      <a href="#">Mensual</a>
+      <a href="#">General</a>
+   </nav><!--navegacion Calendario-->
+
+    <div class="lista clearfix">
+      <div class="lista_tareas">
+        <h3>Tareas en Proceso</h3><!--Tareas en proceso-->
+        <div class="lista_proceso" id="lista_proceso">
+          <p>Lista numero 1 <a href="#">X</a></p>
+          <p>Lista numero 2 <a href="#">X</a></p>
+          <p>Lista numero 3 <a href="#">X</a></p>
+          <p>Lista numero 4 <a href="#">X</a></p>
+          <p>Lista numero 5 <a href="#">X</a></p>
+        </div>
+      </div><!--Listas tareas-->
+
+      <div class="separador"></div><!--Separador-->
+
+      <div class="lista_tareas">
+          <h3>Tareas Completadas</h3><!--Tareas completadas-->
+          <div class="lista_completada" id="lista_completada">
+            <p>Lista numero 1 <a href="#">X</a></p>
+            <p>Lista numero 2 <a href="#">X</a></p>
+            <p>Lista numero 3 <a href="#">X</a></p>
+            <p>Lista numero 4 <a href="#">X</a></p>
+            <p>Lista numero 5 <a href="#">X</a></p>
+          </div>
+      </div><!--Listas tareas-->
+    </div><!--Lista-->
   
-    <div class="content caja" id="">
-      <h2>Contenido</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, placeat, provident. Laboriosam quos voluptatibus enim assumenda! Molestiae ratione consequuntur enim mollitia laborum ipsum id cumque quasi illo placeat architecto, provident!</p>
-    </div>
-
-    <div class="content" id="empezar">
-      <div class="button">
-        <a href="#" class="button">👉 Empezar 👈</a>
+    <!--Barrita de progreso-->
+    <div class="progreso">
+      <h3>Tu progreso</h3>
+      <div id="progress_bar">
+        <div id="progress"></div><p>2%</p>
       </div>
     </div>
-  </div>
-
-
+     
+  </div><!--contenedor-->
   
-  <footer class="clearfix">
+  
+  <footer>
     <div id="contact">
       <a href="#">Facebook<i class="fa fa-facebook" aria-hidden="true"></i></a>
       <a href="#">Twitter<i class="fa fa-twitter" aria-hidden="true"></i></a>

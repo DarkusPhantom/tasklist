@@ -100,6 +100,7 @@ textarea {
 body {
   background: #D4D4D4!important;
   font-size: 1.1em;
+  text-align: center;
 }
 
 /*General*/
@@ -108,6 +109,7 @@ body {
   text-align: center;
   color: #8db0f3;
   line-height: 1;
+  min-height: 240px;
 }
 
 /*Botones*/
@@ -132,6 +134,8 @@ a {
   display: flex;
   top: 0;
   left: 0;
+  position: fixed;
+  width: 98%;
 }
 
 /*Boton de inicio*/
@@ -171,10 +175,12 @@ div.menu span{
   background-image: url('../img/background.jpg');
   background-position: top center;
   background-size: cover;
+  margin-top: 55px;
   padding-top: 50px;
   height: 250px;
   text-shadow: 5px 5px 3px #2515c1;
   text-align: center!important;
+  color: white;
 }
 
 #intro h2 {
@@ -251,24 +257,183 @@ div.button a:hover {
 footer {
   background: black;
   padding: 15px 30px 10px 15px;
-  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: .9em;
 }
 
 #contact {
   padding: 8px 10px;
-  display: inline-block;
 }
 
 #contact a {
   margin: 0 15px;
 }
 
+.derechos_autor {
+  color: #D4D4D4;
+  font-size: .8em;
+}
+
+/*----------------------------------------------------------------------------*/
+.contenedor {
+  width: 100%;
+  min-height: 800px;
+}
+
+/*Encabezado*/
+
+.encabezado h2 {
+  margin-bottom: 0;
+  margin-top: 50px;
+}
 
 
+/**/
+.contenedor {
+
+}
+
+/*Campo*/
+div.campo {
+  background: #369e6a;
+  padding: 40px;
+  margin-bottom: 10px;
+}
+
+div.campo input {
+  width: 70%;
+  padding: 10px;
+  border: none;
+}
+
+/*Menu Calendario*/
+.nav_calendario {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 8px 0;
+  background: #296BB5;
+  box-shadow: 0 3px 5px black;
+}
+
+.nav_calendario a {
+  padding: 10px 15px;
+  margin-right: 15px;
+}
+
+.nav_calendario a:hover {
+  background: #3589E8;
+  border-bottom: 3px solid white;
+}
+
+/*activo*/
+a.active {
+    border-bottom: 3px solid white;
+}
+
+/*Separador*/
+.separador {
+  border-left: 6px solid #369e6a;
+  height: 30%;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 630px; 
+}
 
 
+/*Listas*/
+div.lista {
+  width: 95%;
+  padding: 20px 15px 10px 15px;
+  margin: auto;
+  margin-bottom: 10px;
+  background: rgba(41, 107, 181, 0.82);
+  clear: both;
+  min-height: 330px;
+}
 
+div.lista_tareas {
+  width: 50%;
+  float: left;
+}
 
+div.lista_tareas h3{
+  width: 95%;
+  margin: auto;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  background: #369e6a;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 0 3px 5px #016734;
+}
+
+div.lista_completada, div.lista_proceso {
+  width: 95%;
+  margin: 0 auto;
+}
+
+div.lista_tareas p {
+  color: white;
+  text-align: left;
+  font-size: 1.2em;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+div.lista_tareas p:before {
+  content: '-\00a0';
+}
+
+div.lista_tareas a {
+  color: red;
+  float: right;
+  margin-right: 15px;
+}
+
+/*Barrita progreso -- Progress bar*/
+div.progreso {
+  width: 100%;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+div.progreso h3 {
+  margin: auto;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  color: rgba(41, 107, 181, 0.82);
+  font-weight: bold;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+#progress_bar {
+  width: 80%;
+  margin: auto;
+  height: 30px;
+  position: relative;
+  background-color: #ddd;
+}
+
+#progress {
+  background: #296BB5;
+  width: 2%;
+  height: 100%;
+  position: absolute;
+}
+
+#progress_bar p {
+  width: 100%;
+  margin: auto;
+  position: absolute;
+  top: 2px;
+  left: 0;
+}
 
 /* ==========================================================================
    Helper classes
