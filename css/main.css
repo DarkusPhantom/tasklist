@@ -106,11 +106,15 @@ body {
 /*General*/
 .container {
   width: 100%;
-  min-height: 800px;
+  margin: auto;
   text-align: center;
   min-height: 240px;
 }
 
+.clearfix, .clearfix::after, .clearfix::before {
+  clear: both;
+  content: '';
+}
 
 /*Botones*/
 .button {
@@ -124,18 +128,18 @@ a {
   text-decoration: none;
 }
 
-
-
 /*Header principal*/
 #main-header {
   background: #296BB5;
-  padding: 5px 15px 20px 15px;
+  width: 98%;
   height: 30px;
+  padding: 5px 15px 20px 15px;
+  margin: 0 auto;
   display: flex;
   top: 0;
   left: 0;
   position: fixed;
-  width: 98%;
+  z-index: 5;
 }
 
 /*Boton de inicio*/
@@ -170,6 +174,22 @@ div.menu span{
   display: block;
 }
 
+#menu_lateral {
+
+}
+
+/*Encabezado*/
+.encabezado {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 350px;
+}
+
+.encabezado h2 {
+  margin-bottom: 0;
+  margin-top: 50px;
+}
+
 /*Intro*/
 #intro {
   background-image: url('../img/background.jpg');
@@ -196,7 +216,7 @@ div.menu span{
 
 /*Cuerpo de la pagina*/
 div.content {
-  padding: 15px 10px 20px 10px;
+  padding: 20px 10px 25px 10px;
   margin: auto;
   margin-bottom: 10px;
   background-color: #3f369e;
@@ -255,6 +275,7 @@ div.button a {
   padding: 10px 15px;
   border-radius: 10%;
   color: white;
+  box-shadow: 0 3px 5px black;
 }
 
 div.button a:hover {
@@ -291,24 +312,6 @@ footer {
 }
 
 /*----------------------------------------------------------------------------*/
-.contenedor {
-  width: 100%;
-  min-height: 800px;
-}
-
-/*Encabezado*/
-
-.encabezado h2 {
-  margin-bottom: 0;
-  margin-top: 50px;
-}
-
-
-/**/
-.contenedor {
-
-}
-
 /*Campo*/
 div.campo {
   background: #369e6a;
@@ -320,6 +323,10 @@ div.campo input {
   width: 70%;
   padding: 10px;
   border: none;
+}
+
+div.campo #add_task {
+  width: 10%;
 }
 
 /*Menu Calendario*/
@@ -347,17 +354,6 @@ a.active {
     border-bottom: 3px solid white;
 }
 
-/*Separador*/
-.separador {
-  border-left: 6px solid #369e6a;
-  height: 30%;
-  position: absolute;
-  left: 50%;
-  margin-left: -3px;
-  top: 630px; 
-}
-
-
 /*Listas*/
 div.lista {
   width: 95%;
@@ -366,6 +362,8 @@ div.lista {
   margin-bottom: 10px;
   background: rgba(41, 107, 181, 0.82);
   clear: both;
+  position: relative;
+  z-index: 0;
   min-height: 330px;
 }
 
@@ -385,7 +383,7 @@ div.lista_tareas h3{
   box-shadow: 0 3px 5px #016734;
 }
 
-div.lista_completada, div.lista_proceso {
+div.listas {
   width: 95%;
   margin: 0 auto;
 }
@@ -396,16 +394,46 @@ div.lista_tareas p {
   font-size: 1.2em;
   margin: auto;
   margin-bottom: 10px;
-}
-
-div.lista_tareas p:before {
-  content: '-\00a0';
+  position: relative;
+  top: 0;
+  left: 20px;
 }
 
 div.lista_tareas a {
   color: red;
   float: right;
-  margin-right: 15px;
+  margin-right: 20px;
+}
+
+div.lista_tareas p input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/*check*/
+.checkcontainer input:checked, .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark {
+  position: absolute;
+  top: 5px;
+  left: -20px;
+  height: 17px;
+  width: 17px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+/*Separador*/
+.separador {
+  height: 70%;
+  margin-left: -3px;
+  position: absolute;
+  top: 22%; 
+  left: 50%;
+  border-left: 6px solid #369e6a;
 }
 
 /*Barrita progreso -- Progress bar*/
@@ -431,6 +459,7 @@ div.progreso h3 {
   margin: auto;
   height: 30px;
   position: relative;
+  z-index: -1;
   background-color: #ddd;
 }
 
@@ -438,7 +467,7 @@ div.progreso h3 {
   background: #296BB5;
   width: 2%;
   height: 100%;
-  position: absolute;
+  position: relative;
 }
 
 #progress_bar p {

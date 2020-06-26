@@ -38,14 +38,15 @@
   </header>
   
   <!--Contenido de la pagina-->
-  <div class="contenedor">
-   <div class="encabezado" id="intro">
+  
+  <div class="encabezado" id="intro">
      <h2>Lista de Tareas</h2>
-   </div><!--Intro-->
-
-   <div class="campo" id="add_task">
-    <input type="text" name="introducir_tarea" id="introducir_tarea" placeholder="Introduce una tarea....">
-   </div><!--Campo para introducir tarea-->
+  </div><!--Intro-->
+  <div class="container">
+   	<div class="campo">
+    	<input type="text" name="introducir_tarea" id="introducir_tarea" placeholder="Introduce una tarea....">
+    	<input type="submit" name="añadir" id="add_task" value="Añadir">
+   	</div><!--Campo para introducir tarea-->
 
    <nav class="nav_calendario">
       <a class="active" href="#">Hoy</a>
@@ -54,15 +55,25 @@
       <a href="#">General</a>
    </nav><!--navegacion Calendario-->
 
-    <div class="lista clearfix">
+    <div class="lista clearfix" id="lista">
       <div class="lista_tareas">
         <h3>Tareas en Proceso</h3><!--Tareas en proceso-->
-        <div class="lista_proceso" id="lista_proceso">
-          <p>Lista numero 1 <a href="#">X</a></p>
-          <p>Lista numero 2 <a href="#">X</a></p>
-          <p>Lista numero 3 <a href="#">X</a></p>
-          <p>Lista numero 4 <a href="#">X</a></p>
-          <p>Lista numero 5 <a href="#">X</a></p>
+        <div class="listas" id="lista_proceso">
+          <p class="checkcontianer">
+            <input type="checkbox"><span class="checkmark"></span>Lista numero 1 <a href="#" class="borrar_tarea">X</a>
+          </p>
+          <p class="checkcontianer">
+            <input type="checkbox"><span class="checkmark"></span>Lista numero 2 <a href="#" class="borrar_tarea">X</a>
+          </p>
+          <p class="checkcontianer">
+            <input type="checkbox"><span class="checkmark"></span>Lista numero 3 <a href="#" class="borrar_tarea">X</a>
+          </p>
+          <p class="checkcontianer">
+            <input type="checkbox"><span class="checkmark"></span>Lista numero 4 <a href="#" class="borrar_tarea">X</a>
+          </p>
+          <p class="checkcontianer">
+            <input type="checkbox"><span class="checkmark"></span>Lista numero 5 <a href="#" class="borrar_tarea">X</a>
+          </p>
         </div>
       </div><!--Listas tareas-->
 
@@ -70,12 +81,22 @@
 
       <div class="lista_tareas">
           <h3>Tareas Completadas</h3><!--Tareas completadas-->
-          <div class="lista_completada" id="lista_completada">
-            <p>Lista numero 1 <a href="#">X</a></p>
-            <p>Lista numero 2 <a href="#">X</a></p>
-            <p>Lista numero 3 <a href="#">X</a></p>
-            <p>Lista numero 4 <a href="#">X</a></p>
-            <p>Lista numero 5 <a href="#">X</a></p>
+          <div class="listas" id="lista_completada">
+            <p class="checkcontianer">
+              <input type="checkbox"><span class="checkmark"></span>Lista numero 1 <a href="#" class="borrar_tarea">X</a>
+            </p>
+            <p class="checkcontianer">
+              <input type="checkbox"><span class="checkmark"></span>Lista numero 2 <a href="#" class="borrar_tarea">X</a>
+            </p>
+            <p class="checkcontianer">
+              <input type="checkbox"><span class="checkmark"></span>Lista numero 3 <a href="#" class="borrar_tarea">X</a>
+            </p>
+            <p class="checkcontianer">
+              <input type="checkbox"><span class="checkmark"></span>Lista numero 4 <a href="#" class="borrar_tarea">X</a>
+            </p>
+            <p class="checkcontianer">
+              <input type="checkbox"><span class="checkmark"></span>Lista numero 5 <a href="#" class="borrar_tarea">X</a>
+            </p>
           </div>
       </div><!--Listas tareas-->
     </div><!--Lista-->
