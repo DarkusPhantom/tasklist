@@ -116,6 +116,15 @@ body {
   content: '';
 }
 
+li {
+  list-style: none;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
 /*Botones*/
 .button {
   text-align: center;
@@ -123,10 +132,6 @@ body {
   
 }
 
-a {
-  color: white;
-  text-decoration: none;
-}
 
 /*Header principal*/
 #main-header {
@@ -388,7 +393,7 @@ div.listas {
   margin: 0 auto;
 }
 
-div.lista_tareas p {
+div.lista_tareas li {
   color: white;
   text-align: left;
   font-size: 1.2em;
@@ -405,7 +410,7 @@ div.lista_tareas a {
   margin-right: 20px;
 }
 
-div.lista_tareas p input[type="checkbox"] {
+div.lista_tareas li input[type="checkbox"] {
   position: absolute;
   opacity: 0;
   cursor: pointer;
