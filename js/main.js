@@ -1,23 +1,23 @@
 (function () {
 	//Variables
 	const listaTareas = document.getElementById('lista');
-	const BTNintroducirTarea = document.getElementById('añadirTask');
 	const tareaInput = document.getElementById('introducir_tarea');
 	const listas = document.getElementsByClassName('listas');
 	const btnAgregarTask = document.getElementById('add_task');
-
-
+	const listaTareasCompletadas = document.getElementById('lista_completadas');
+	const barra_calendario = document.querySelector('.nav_calendario');
 
 	//EventListeners
+
+
 	//Agrega una tarea
 	btnAgregarTask.addEventListener("click", agregarTask);
 
 	//Eliminar Tarea
 	listaTareas.addEventListener("click", eliminarTarea);
 
-	//Comprueba si la tarea existe
-	//tareaInput.addEventListener("click", comprobarInput);
-
+	//Muestra el cual estado esta activo
+	barra_calendario.addEventListener('click', estadoActivo);
 
 
 
@@ -41,8 +41,10 @@
 		} else {
 			tareaInput.setAttribute("placeholder", "Introduce una tarea...");
 			tareaInput.style.border = 'none';
-
 		}
+
+		//Verifica si la tarea ya existe
+//		verificarTarea(contenido);
 
 		//Anexamos la X para eliminar
 		eliminarBTN.innerText = "X";
@@ -67,6 +69,18 @@
 		listaProceso.appendChild(nuevaTarea);
 	}
 
+/*
+	//Comprueba si la tarea ya existe en la lista
+	function verificarTarea(contenido) {
+		let indice2 = 0,
+			indice = 0;
+		let listaContenido = listas[indice].children[indice2].children[0].textContent;
+		console.log(
+				listaContenido.slice(14,listaContenido.lenght-1)
+			);
+
+	}
+*/
 
 	//Elimina la tarea
 	function eliminarTarea(e) {
@@ -76,19 +90,21 @@
 		}
 	}
 
-	//Comprueba si el input de insertar tarea no esta vacio
-	/*function comprobarInput(e) {
+
+	//Muestra cual estado esta activo en la barra de navegacion
+	function estadoActivo(e) {
 		e.preventDefault();
-
-		for (var i = listas.length - 1; i >= 0; i--) {
-			for (var j = listas[i].children.length - 1; j >= 0; j--) {
-				console.log(listas[i].children[j].innerText);
+		if(!e.target.classList.contains('active')) {
+			//Elimina los estados activo
+			for (var i = 0; i < barra_calendario.children.length; i++) {
+				if (barra_calendario != e.target) {
+					console.log(barra_calendario.children[i].classList.remove('active'));
+				}
 			}
+			//Activa el estado seleccionado
+			e.target.classList.add('active');
 		}
-	}*/
-
-
-
+	}
 
 
 
