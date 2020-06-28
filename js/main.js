@@ -5,6 +5,7 @@
 	const listas = document.getElementsByClassName('listas');
 	const btnAgregarTask = document.getElementById('add_task');
 	const listaTareasCompletadas = document.getElementById('lista_completada');
+	const listaTareasProceso = document.getElementById('lista_proceso');
 	const barra_calendario = document.querySelector('.nav_calendario');
 
 
@@ -82,8 +83,7 @@
 		nuevaTarea.className = "checkcontainer";
 
 		//Agregamos la nueva tarea a la lista en proceso
-		let listaProceso = document.getElementById('lista_proceso');
-		listaProceso.appendChild(nuevaTarea);
+		console.log(listaTareasProceso.appendChild(nuevaTarea));
 	}
 
 /*
@@ -114,8 +114,7 @@
 		e.preventDefault();
 
 		if (e.target.classList.contains('checkmark')) {
-			console.log(e.target.parentElement.children[0]);
-			if (true) {
+			if (!e.target.parentElement.children[0].hasAttribute('checked')) {
 				let tareaCompletada = e.target.parentElement;
 				//Remueve la tarea de la lista de tareas en proceso
 				e.target.parentElement.remove();
@@ -123,13 +122,39 @@
 				tareaCompletada.children[0].setAttribute('checked','checked');
 				//lo inserta en la lista de tareas de tareas completadas
 				listaTareasCompletadas.insertBefore(tareaCompletada,listaTareasCompletadas.children[0]);
+			} else {
+				let tareaProceso = e.target.parentElement;
+				//Remueve la tarea de la lista de tareas en proceso
+				e.target.parentElement.remove();
+				//quita el check en la tarea completada
+				tareaProceso.children[0].removeAttribute('checked');
+				console.log(listaTareasProceso);
+				//lo inserta en la lista de tareas de tareas en proceso
+				console.log(listaTareasProceso.insertBefore(tareaProceso,listaTareasProceso.children[0]));
 			}
 		};
 		e.stopPropagation();
 	}
 
 
+/*
 
+	function cambiarCheckmarkTarea(tarea, listaTarea) {
+		let tareaCambio = tarea;
+		///Remueve la tarea de la lista
+		tarea.remove();
+		
+		//agrega o quita el check de la tarea
+		if (tareaCambio.hasAttribute('checked')) {
+			console.log(tareaCambio.setAttribute('checked','checked'));
+		} else if (!tareaCambio.hasAttribute('checked')) {
+			console.log(tareaCambio.removeAttribute('checked'));
+		}
+
+		//lo inserta en la lista de tareas de tareas completadas
+		listaTarea.insertBefore(tareaCambio,listaTarea.children[0]);
+	}
+ */
 
 
 
