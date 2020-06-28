@@ -6,7 +6,8 @@
 	const btnAgregarTask = document.getElementById('add_task');
 	const listaTareasCompletadas = document.getElementById('lista_completadas');
 	const barra_calendario = document.querySelector('.nav_calendario');
-
+	const btnCheckbox = document.querySelectorAll("input.checkbox");
+	console.log(btnCheckbox);
 	//EventListeners
 
 
@@ -98,7 +99,7 @@
 			//Elimina los estados activo
 			for (var i = 0; i < barra_calendario.children.length; i++) {
 				if (barra_calendario != e.target) {
-					console.log(barra_calendario.children[i].classList.remove('active'));
+					barra_calendario.children[i].classList.remove('active');
 				}
 			}
 			//Activa el estado seleccionado
