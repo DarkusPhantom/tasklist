@@ -399,9 +399,15 @@ div.lista_tareas li {
   font-size: 1.2em;
   margin: auto;
   margin-bottom: 10px;
+  padding-left: 10px;
   position: relative;
   top: 0;
   left: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
 }
 
 div.lista_tareas a {
@@ -410,17 +416,17 @@ div.lista_tareas a {
   margin-right: 20px;
 }
 
-div.lista_tareas li input[type="checkbox"] {
+/*-----checkbox----*/
+/* Hide the browser's default checkbox */
+div.lista_tareas li input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
+  width: 0;
+  height: 0;
 }
 
-/*check*/
-.checkcontainer input:checked, .checkmark {
-  background-color: #2196F3;
-}
-
+/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: 5px;
@@ -428,7 +434,36 @@ div.lista_tareas li input[type="checkbox"] {
   height: 17px;
   width: 17px;
   background-color: #ddd;
-  cursor: pointer;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkcontainer input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+div.lista_tareas li input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+div.lista_tareas li .checkmark:after {
+  left: 5px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid #369e6a;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 /*Separador*/
