@@ -438,7 +438,7 @@ div.lista_tareas li input {
 
 /* When the checkbox is checked, add a blue background */
 .checkcontainer input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: #eee;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

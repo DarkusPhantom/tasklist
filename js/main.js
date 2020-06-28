@@ -4,12 +4,13 @@
 	const tareaInput = document.getElementById('introducir_tarea');
 	const listas = document.getElementsByClassName('listas');
 	const btnAgregarTask = document.getElementById('add_task');
-	const listaTareasCompletadas = document.getElementById('lista_completadas');
+	const listaTareasCompletadas = document.getElementById('lista_completada');
 	const barra_calendario = document.querySelector('.nav_calendario');
-	const btnCheckbox = document.querySelectorAll("input.checkbox");
-	console.log(btnCheckbox);
-	//EventListeners
 
+
+	//EventListeners
+	//Muestra el cual estado esta activo
+	barra_calendario.addEventListener('click', estadoActivo);
 
 	//Agrega una tarea
 	btnAgregarTask.addEventListener("click", agregarTask);
@@ -17,12 +18,27 @@
 	//Eliminar Tarea
 	listaTareas.addEventListener("click", eliminarTarea);
 
-	//Muestra el cual estado esta activo
-	barra_calendario.addEventListener('click', estadoActivo);
+	//Pasa la tarea lista de Tareas en Proceso a Tarea Completada
+	listaTareas.addEventListener('click', tareaCompletada);
 
 
 
 	//Funciones
+	//Muestra cual estado esta activo en la barra de navegacion
+	function estadoActivo(e) {
+		e.preventDefault();
+		if(!e.target.classList.contains('active')) {
+			//Elimina los estados activo
+			for (var i = 0; i < barra_calendario.children.length; i++) {
+				if (barra_calendario != e.target) {
+					barra_calendario.children[i].classList.remove('active');
+				}
+			}
+			//Activa el estado seleccionado
+			e.target.classList.add('active');
+		}
+	}
+
 	//Agrega una tarea a la lista
 	function agregarTask(e) {
 		e.preventDefault();
@@ -89,22 +105,27 @@
 		if (e.target.classList.contains('borrar_tarea')) {
 			e.target.parentElement.remove();
 		}
+
+		e.stopPropagation();
 	}
 
-
-	//Muestra cual estado esta activo en la barra de navegacion
-	function estadoActivo(e) {
+	//Pasa la tarea con checkmark a tareas completadas
+	function tareaCompletada(e) {
 		e.preventDefault();
-		if(!e.target.classList.contains('active')) {
-			//Elimina los estados activo
-			for (var i = 0; i < barra_calendario.children.length; i++) {
-				if (barra_calendario != e.target) {
-					barra_calendario.children[i].classList.remove('active');
-				}
+
+		if (e.target.classList.contains('checkmark')) {
+			console.log(e.target.parentElement.children[0]);
+			if (true) {
+				let tareaCompletada = e.target.parentElement;
+				//Remueve la tarea de la lista de tareas en proceso
+				e.target.parentElement.remove();
+				//agrega el check en la tarea completada
+				tareaCompletada.children[0].setAttribute('checked','checked');
+				//lo inserta en la lista de tareas de tareas completadas
+				listaTareasCompletadas.insertBefore(tareaCompletada,listaTareasCompletadas.children[0]);
 			}
-			//Activa el estado seleccionado
-			e.target.classList.add('active');
-		}
+		};
+		e.stopPropagation();
 	}
 
 
