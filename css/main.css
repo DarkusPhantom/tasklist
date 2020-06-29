@@ -510,7 +510,7 @@ div.progreso h3 {
   position: relative;
 }
 
-#progress_bar p {
+#progress_bar div.label {
   width: 100%;
   margin: auto;
   position: absolute;

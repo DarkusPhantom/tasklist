@@ -23,6 +23,8 @@
 	listaTareas.addEventListener('click', tareaCompletada);
 
 
+	//Llamado de funciones
+	move();
 
 	//Funciones
 	//Muestra cual estado esta activo en la barra de navegacion
@@ -157,8 +159,48 @@
  */
 
 
+//Aumenta la barra de progreso
+function move() {
+	let progress = document.getElementById('progress'),
+		progressNum = document.querySelector('.label');
+	let totalTareas = listaTareasCompletadas.children.length,
+		total = totalTareas * (100/20),
+		width = 0,
+		id = setInterval(frame, 0);
 
+	//el frame aumenta con respecto a las actividades completadas
+	function frame() {
+		console.log("Funcion");
+		//while (width < 100){
+		//	console.log("while");
+			if (width >= total) {
+				clearInterval(id);
+			} else {
+				width++;
+				progress.style.width = width + '%';
+				progressNum.innerHTML = width * 1 + '%';
+			}
+		//}
+	}
 
+}
+
+/*Funcion para progress bar
+function move() {
+    var elem = document.getElementById("myBar");
+    var width = 10;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = width + '%';
+            document.getElementById("label").innerHTML = width * 1 + '%';
+        }
+    }
+}
+ */
 
 
 
