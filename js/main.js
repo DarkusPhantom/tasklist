@@ -139,25 +139,6 @@
 	}
 
 
-/*
-
-	function cambiarCheckmarkTarea(tarea, listaTarea) {
-		let tareaCambio = tarea;
-		///Remueve la tarea de la lista
-		tarea.remove();
-		
-		//agrega o quita el check de la tarea
-		if (tareaCambio.hasAttribute('checked')) {
-			console.log(tareaCambio.setAttribute('checked','checked'));
-		} else if (!tareaCambio.hasAttribute('checked')) {
-			console.log(tareaCambio.removeAttribute('checked'));
-		}
-
-		//lo inserta en la lista de tareas de tareas completadas
-		listaTarea.insertBefore(tareaCambio,listaTarea.children[0]);
-	}
- */
-
 
 //Aumenta la barra de progreso
 function move() {

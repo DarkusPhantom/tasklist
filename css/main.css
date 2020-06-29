@@ -505,7 +505,7 @@ div.progreso h3 {
 
 #progress {
   background: #296BB5;
-  width: 2%;
+  width: 0%;
   height: 100%;
   position: relative;
 }
