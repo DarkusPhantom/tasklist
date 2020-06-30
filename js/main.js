@@ -8,13 +8,13 @@
 	const listaTareasProceso = document.getElementById('lista_proceso');
 	const barra_calendario = document.querySelector('.nav_calendario');
 
-
 	//EventListeners
 	//Muestra el cual estado esta activo
 	barra_calendario.addEventListener('click', estadoActivo);
 
 	//Agrega una tarea
 	btnAgregarTask.addEventListener("click", agregarTask);
+
 
 	//Eliminar Tarea
 	listaTareas.addEventListener("click", eliminarTarea);
@@ -23,8 +23,6 @@
 	listaTareas.addEventListener('click', tareaCompletada);
 
 
-	//Llamado de funciones
-	move();
 
 	//Funciones
 	//Muestra cual estado esta activo en la barra de navegacion
@@ -48,9 +46,9 @@
 
 		let tarea = tareaInput.value;
 		let nuevaTarea = document.createElement("li"),
-			eliminarBTN = document.createElement("a")
-			contenido = document.createTextNode(tarea)
-			checkbox = document.createElement("input")
+			eliminarBTN = document.createElement("a"),
+			contenido = document.createTextNode(tarea),
+			checkbox = document.createElement("input"),
 			checkmark = document.createElement("span");
 		
 
@@ -63,8 +61,6 @@
 			tareaInput.style.border = 'none';
 		}
 
-		//Verifica si la tarea ya existe
-//		verificarTarea(contenido);
 
 		//Anexamos la X para eliminar
 		eliminarBTN.innerText = "X";
@@ -85,21 +81,10 @@
 		nuevaTarea.className = "checkcontainer";
 
 		//Agregamos la nueva tarea a la lista en proceso
-		console.log(listaTareasProceso.appendChild(nuevaTarea));
+		listaTareasProceso.appendChild(nuevaTarea);
+		tareaInput.value = "";
 	}
 
-/*
-	//Comprueba si la tarea ya existe en la lista
-	function verificarTarea(contenido) {
-		let indice2 = 0,
-			indice = 0;
-		let listaContenido = listas[indice].children[indice2].children[0].textContent;
-		console.log(
-				listaContenido.slice(14,listaContenido.lenght-1)
-			);
-
-	}
-*/
 
 	//Elimina la tarea
 	function eliminarTarea(e) {
@@ -116,30 +101,29 @@
 		e.preventDefault();
 
 		if (e.target.classList.contains('checkmark')) {
+			let tareaCambio = e.target.parentElement;
+			
+			//Remueve la tarea de la lista de tareas en proceso
+			e.target.parentElement.remove();
+			
 			if (!e.target.parentElement.children[0].hasAttribute('checked')) {
-				let tareaCompletada = e.target.parentElement;
-				//Remueve la tarea de la lista de tareas en proceso
-				e.target.parentElement.remove();
 				//agrega el check en la tarea completada
-				tareaCompletada.children[0].setAttribute('checked','checked');
+				tareaCambio.children[0].setAttribute('checked','checked');
 				//lo inserta en la lista de tareas de tareas completadas
-				listaTareasCompletadas.insertBefore(tareaCompletada,listaTareasCompletadas.children[0]);
+				listaTareasCompletadas.insertBefore(tareaCambio,listaTareasCompletadas.children[0]);
 			} else {
-				let tareaProceso = e.target.parentElement;
-				//Remueve la tarea de la lista de tareas en proceso
-				e.target.parentElement.remove();
 				//quita el check en la tarea completada
-				tareaProceso.children[0].removeAttribute('checked');
-				console.log(listaTareasProceso);
+				tareaCambio.children[0].removeAttribute('checked');
 				//lo inserta en la lista de tareas de tareas en proceso
-				console.log(listaTareasProceso.insertBefore(tareaProceso,listaTareasProceso.children[0]));
+				listaTareasProceso.insertBefore(tareaCambio,listaTareasProceso.children[0]);
 			}
 		};
 		e.stopPropagation();
 	}
 
 
-
+//
+move();
 //Aumenta la barra de progreso
 function move() {
 	let progress = document.getElementById('progress'),
@@ -147,6 +131,7 @@ function move() {
 	let totalTareas = listaTareasCompletadas.children.length,
 		total = totalTareas * (100/20),
 		width = 0,
+		inicio = 0,
 		id = setInterval(frame, 0);
 
 	//el frame aumenta con respecto a las actividades completadas
@@ -154,17 +139,54 @@ function move() {
 		console.log("Funcion");
 		//while (width < 100){
 		//	console.log("while");
-			if (width >= total) {
+			if (inicio === total) {
 				clearInterval(id);
 			} else {
+				inicio++;
 				width++;
 				progress.style.width = width + '%';
 				progressNum.innerHTML = width * 1 + '%';
 			}
 		//}
 	}
-
 }
+
+
+
+}());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Revisa que la tarea no este repetida dentro del input
+//tareaInput.addEventListener('blur', noEstaEnLista);
+/*	//document.querySelector('li.checkcontainer').innerText.slice(0, -2)
+	function noEstaEnLista(e) {
+		e.preventDefault();
+
+		let listaTarea = document.getElementsByClassName('checkcontainer');
+		let tareaContenido = tareaInput.value; 
+
+		//recorre todas las tareas de las dos listas
+		for (var i = 0; i < listaTarea.length; i++) {
+			if (listaTarea[i].innerText.slice(0, -2) === tareaContenido) { //Si son iguales la tarea a insertar con uno de la lista, lanza error
+				tareaInput.setAttribute("placeholder", "Agrega una tarea valida");
+				tareaInput.style.border = '2px solid red';
+				return false;
+			}
+		}
+	}*/
+
 
 /*Funcion para progress bar
 function move() {
@@ -180,9 +202,4 @@ function move() {
             document.getElementById("label").innerHTML = width * 1 + '%';
         }
     }
-}
- */
-
-
-
-}());
+}*/
