@@ -15,13 +15,14 @@
 	//Agrega una tarea
 	btnAgregarTask.addEventListener("click", agregarTask);
 
-
 	//Eliminar Tarea
 	listaTareas.addEventListener("click", eliminarTarea);
 
 	//Pasa la tarea lista de Tareas en Proceso a Tarea Completada
 	listaTareas.addEventListener('click', tareaCompletada);
 
+	//Cargando el contenido
+	document.addEventListener('DOMContentLoaded', localStorageCargado);
 
 
 	//Funciones
@@ -61,7 +62,6 @@
 			tareaInput.style.border = 'none';
 		}
 
-
 		//Anexamos la X para eliminar
 		eliminarBTN.innerText = "X";
 		//Establecemos el atributo al enlace
@@ -82,7 +82,13 @@
 
 		//Agregamos la nueva tarea a la lista en proceso
 		listaTareasProceso.appendChild(nuevaTarea);
+		
+		//Añadir al local Storage el texto
+		agregarTaskLocalStorage(nuevaTarea.innerText.slice(0,-2));
+		
+		//Vacia todo escrito que haya en el input
 		tareaInput.value = "";
+	
 	}
 
 
@@ -95,6 +101,7 @@
 
 		e.stopPropagation();
 	}
+
 
 	//Pasa la tarea con checkmark a tareas completadas
 	function tareaCompletada(e) {
@@ -120,6 +127,91 @@
 		};
 		e.stopPropagation();
 	}
+
+
+	//Muestra los datos almacenado en el local storage
+	function localStorageCargado() {
+		let tareas;
+
+		tareas = obtenerTareasLocalStorage();
+		tareas.forEach(function (tarea) {
+			let nuevaTarea = document.createElement("li"),
+				eliminarBTN = document.createElement("a"),
+				contenido = document.createTextNode(tarea),
+				checkbox = document.createElement("input"),
+				checkmark = document.createElement("span");
+
+			if (tarea === "" || tarea === " ") {
+				tareaInput.setAttribute("placeholder", "Agrega una tarea valida");
+				tareaInput.style.border = '2px solid red';
+				return false;
+			} else {
+				tareaInput.setAttribute("placeholder", "Introduce una tarea...");
+				tareaInput.style.border = 'none';
+			}
+
+			//Anexamos la X para eliminar
+			eliminarBTN.innerText = "X";
+			//Establecemos el atributo al enlace
+			eliminarBTN.setAttribute("href", "#");
+			//Le añadimos la clase de borrar_tarea
+			eliminarBTN.className = "borrar_tarea";
+			//añadimos el tipo checkbox al input
+			checkbox.setAttribute("type","checkbox");
+			//Añadimos el checkmark al span
+			checkmark.className = "checkmark";
+			//Agregamos el checkbox, checkmark, el contenido y el boton de eliminar a la Nueva tarea
+			nuevaTarea.appendChild(checkbox);
+			nuevaTarea.appendChild(checkmark);
+			nuevaTarea.appendChild(contenido);
+			nuevaTarea.appendChild(eliminarBTN);
+			//Añadimos la clase a la lista
+			nuevaTarea.className = "checkcontainer";
+
+			//Agregamos la nueva tarea a la lista en proceso
+			listaTareasProceso.appendChild(nuevaTarea);
+		})
+	}
+
+	//Agrega tarea al localStorage
+	function agregarTaskLocalStorage(tarea) {
+		let tareas;
+
+		tareas = obtenerTareasLocalStorage();
+
+		//Añadir la nueva tarea
+		tareas.push(tarea);
+
+		//Convertir de string a arreglo para el local storage y lo añade al local storage
+		localStorage.setItem('tareas', JSON.stringify(tareas));
+
+		console.log(tarea);		
+	}
+
+
+	//Revisa cuantas tareas hay en Local Storage para ver si es añadida la tarea o no
+	function obtenerTareasLocalStorage() {
+		let tareas;
+
+		//revisando los valores en el local storage
+		if (localStorage.getItem('tareas') === null) { //Si esta vacia, se agrega un arreglo vacio
+			tareas = [];
+		} else { //Si tiene contenido, agrega la tarea al arreglo
+			tareas = JSON.parse(localStorage.getItem('tareas'));
+		}
+
+		return tareas;
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 //
