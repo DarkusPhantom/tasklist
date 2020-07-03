@@ -132,7 +132,6 @@ a {
   
 }
 
-
 /*Header principal*/
 #main-header {
   background: #296BB5;
@@ -332,6 +331,10 @@ div.campo input {
 
 div.campo #add_task {
   width: 10%;
+}
+
+.error {
+  border: 3px solid red!important;
 }
 
 /*Menu Calendario*/
