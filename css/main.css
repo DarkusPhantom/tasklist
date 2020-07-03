@@ -391,7 +391,7 @@ div.lista_tareas h3{
   box-shadow: 0 3px 5px #016734;
 }
 
-div.listas {
+div#lista_completada, div#lista_proceso {
   width: 95%;
   margin: 0 auto;
 }
