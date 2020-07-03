@@ -95,9 +95,11 @@
 	//Elimina la tarea
 	function eliminarTarea(e) {
 		e.preventDefault();
-		if (e.target.classList.contains('borrar_tarea')) {
+		let tarea = e.target.parentElement;
+		if (e.target.classList.contains('borrar_tarea')) {			
 			e.target.parentElement.remove();
 		}
+		//eliminarTareaLocalStorage(tarea);
 
 		e.stopPropagation();
 	}
@@ -188,6 +190,15 @@
 		console.log(tarea);		
 	}
 
+	/*Elimina la tarea del local storage
+	function eliminarTareaLocalStorage(tarea) {
+		let tareas, tareaBorrar;
+
+		tareaBorrar = tarea.substring(0, tarea.length);
+		console.log(tareaBorrar);
+
+	}*/
+
 
 	//Revisa cuantas tareas hay en Local Storage para ver si es añadida la tarea o no
 	function obtenerTareasLocalStorage() {
@@ -214,7 +225,7 @@
 
 
 
-//
+//cosas por revisar
 move();
 //Aumenta la barra de progreso
 function move() {
