@@ -1,11 +1,11 @@
 (function () {
 	//------------------------Variables-----------------------
-	calendar_bar = document.querySelector('.nav_calendario');
-	btnAddTask = document.getElementById('add_task');
-	inputAddTask = document.getElementById('introducir_tarea');
-	processList = document.getElementById('lista_proceso');
-	
-
+	const calendar_bar = document.querySelector('.nav_calendario');
+	const btnAddTask = document.getElementById('add_task');
+	const inputAddTask = document.getElementById('introducir_tarea');
+	const list = document.querySelector('.lista');
+	const processList = document.getElementById('lista_proceso');
+	const listCompleted = document.getElementById('lista_completada');
 
 	//----------------------EventListener----------------------
 
@@ -15,6 +15,8 @@
 	//Agrega la tarea a la lista de tareas en proceso
 	btnAddTask.addEventListener('click', addTask);
 
+	//Agrega o quita el checkmark de la tarea
+	list.addEventListener('click', taskCheckmark);
 
 	//-------------------------funciones-------------------
 
@@ -44,7 +46,7 @@
 			checkmark = document.createElement("span"),
 			content = document.createTextNode(task),
 			btnDelete = document.createElement('a');
-	
+
 		//Verifica si el input no esta vacio
 		if (task.length <= 0) {
 			inputAddTask.classList.add('error');
@@ -73,12 +75,35 @@
 		//Añade la tarea a la lista de proceso
 		processList.appendChild(newTask);
 
-		addTaskLocalStorage(newTask.innerText.slice(0,-2));
+		//addTaskLocalStorage(newTask.innerText.slice(0,-2));
 
+		//Vacia el escrito que haya en input
 		inputAddTask.value = "";
 	}
 
-	
+	//Añade o quita un check si la tarea esta completada o no
+	function taskCheckmark(e) {
+		e.preventDefault();
+
+		if (e.target.classList.contains('checkmark')) {
+			let task = e.target.parentElement,
+				checkmark = task.children[0];
+			;
+
+			if (!checkmark.hasAttribute('checked')) {
+				//agrega el check en la tarea completada
+				checkmark.setAttribute('checked','checked');
+				//lo inserta de primero en la lista de tareas de tareas completadas
+				listCompleted.insertBefore(task,listCompleted.children[0]);
+			} else {
+				//quita el check en la tarea completada
+				checkmark.removeAttribute('checked');
+				//lo inserta de primero en la lista de tareas de tareas en proceso
+				processList.insertBefore(task,processList.children[0]);
+			}
+		}
+	}
+
 
 /*
 	//Agrega la tarea al local storage
