@@ -3,7 +3,7 @@
 	const calendar_bar = document.querySelector('.nav_calendario');
 	const btnAddTask = document.getElementById('add_task');
 	const inputAddTask = document.getElementById('introducir_tarea');
-	const list = document.querySelector('.lista');
+	const list = document.getElementById('lista');
 	const processList = document.getElementById('lista_proceso');
 	const listCompleted = document.getElementById('lista_completada');
 
@@ -17,6 +17,9 @@
 
 	//Agrega o quita el checkmark de la tarea
 	list.addEventListener('click', taskCheckmark);
+
+	//Elimina la tarea de la lista de tareas
+	list.addEventListener('click', taskDelete);
 
 	//-------------------------funciones-------------------
 
@@ -88,7 +91,6 @@
 		if (e.target.classList.contains('checkmark')) {
 			let task = e.target.parentElement,
 				checkmark = task.children[0];
-			;
 
 			if (!checkmark.hasAttribute('checked')) {
 				//agrega el check en la tarea completada
@@ -102,8 +104,19 @@
 				processList.insertBefore(task,processList.children[0]);
 			}
 		}
+		e.stopPropagation();
 	}
 
+	function taskDelete(e) {
+		e.preventDefault();
+		let task = e.target;
+
+		if (task.classList.contains('borrar_tarea')) {
+			task.parentElement.remove();
+		}
+	
+		e.stopPropagation();
+	}
 
 /*
 	//Agrega la tarea al local storage
