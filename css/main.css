@@ -363,7 +363,7 @@ a.active {
 }
 
 /*Listas*/
-div.lista {
+div#lista {
   width: 95%;
   padding: 20px 15px 10px 15px;
   margin: auto;
