@@ -21,6 +21,9 @@
 	//Elimina la tarea de la lista de tareas
 	list.addEventListener('click', taskDelete);
 
+	//Carga el local storage
+	document.addEventListener('DOMContentLoaded', localStorageLoaded);
+
 	//-------------------------funciones-------------------
 
 	//Muestra cual estado esta activo en la barra de navegacion
@@ -78,7 +81,7 @@
 		//Añade la tarea a la lista de proceso
 		processList.appendChild(newTask);
 
-		//addTaskLocalStorage(newTask.innerText.slice(0,-2));
+		addTaskLocalStorage(newTask.innerText.slice(0,-2));
 
 		//Vacia el escrito que haya en input
 		inputAddTask.value = "";
@@ -107,6 +110,7 @@
 		e.stopPropagation();
 	}
 
+	//Elimina la tarea
 	function taskDelete(e) {
 		e.preventDefault();
 		let task = e.target;
@@ -117,6 +121,38 @@
 	
 		e.stopPropagation();
 	}
+
+	function localStorageLoaded() {
+		
+	}
+
+	function addTaskLocalStorage(task) {
+		let taskList;
+
+		//Obtenemos las tareas almacenadas en local storage
+		taskList = getTaskLocalStorage();
+
+		//Añadir la nueva tarea
+		tasks.push(task);
+
+		//Convertir de string a arreglo para el local storage y lo añade al local storage
+		localStorage.setItem('tareas', JSON.stringify(tasks));
+		
+	}
+
+	function getTaskLocalStorage() {
+		let tasks;
+
+		//revisando los valores en el local storage
+		if (localStorage.getItem('tareas') === null) { //Si esta vacia, se agrega un arreglo vacio
+			tasks = [];
+		} else { //Si tiene contenido, agrega la tarea al arreglo
+			tasks = JSON.parse(localStorage.getItem('tareas'));
+		}
+
+		return tasks;
+	}
+
 
 /*
 	//Agrega la tarea al local storage
@@ -132,6 +168,18 @@
 		//convierte de string a arreglo para el local storage
 		localStorage.setItem('process_task', JSON.stringify(tasks));
 
+	}
+	function obtenerTareasLocalStorage() {
+		let tareas;
+
+		//revisando los valores en el local storage
+		if (localStorage.getItem('tareas') === null) { //Si esta vacia, se agrega un arreglo vacio
+			tareas = [];
+		} else { //Si tiene contenido, agrega la tarea al arreglo
+			tareas = JSON.parse(localStorage.getItem('tareas'));
+		}
+
+		return tareas;
 	}
 */
 
