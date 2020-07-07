@@ -64,7 +64,7 @@
 		//Crea el boton de eliminar la tarea
 		btnDelete.innerText = 'X';
 		btnDelete.setAttribute('href','#');
-		btnDelete.classList.add('borrar-tarea');
+		btnDelete.classList.add('borrar_tarea');
 		
 		//Crea la checkmark
 		checkmark.classList.add('checkmark');
@@ -73,6 +73,7 @@
 		checkbox.setAttribute('type', 'checkbox');
 
 		//Añade el boton de elimminar, el checkmark y el checkbox a la nueva tarea
+		newTask.className = 'checkcontainer'
 		newTask.appendChild(checkbox);
 		newTask.appendChild(checkmark);
 		newTask.appendChild(content);
@@ -114,18 +115,19 @@
 	function taskDelete(e) {
 		e.preventDefault();
 		let task = e.target;
-
+		
 		if (task.classList.contains('borrar_tarea')) {
 			task.parentElement.remove();
+			console.log(task);
 		}
 	
 		e.stopPropagation();
 	}
-
+/*
 	function localStorageLoaded() {
 		
 	}
-
+*/
 	function addTaskLocalStorage(task) {
 		let taskList;
 
@@ -133,11 +135,19 @@
 		taskList = getTaskLocalStorage();
 
 		//Añadir la nueva tarea
-		tasks.push(task);
+		//tasks.push(task);
 
 		//Convertir de string a arreglo para el local storage y lo añade al local storage
-		localStorage.setItem('tareas', JSON.stringify(tasks));
-		
+		//localStorage.setItem('tareas', JSON.stringify(tasks));
+		let i = 0;
+		for (let task in localStorage) { 
+			if (i < localStorage.length) {
+//				console.log(`${task}`);
+			} else {
+				return false;
+			}
+		}
+
 	}
 
 	function getTaskLocalStorage() {
