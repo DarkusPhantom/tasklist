@@ -7,6 +7,12 @@
 	const processList = document.getElementById('lista_proceso');
 	const listCompleted = document.getElementById('lista_completada');
 
+/*Para mostrar si el elemento existe
+	let si = JSON.stringify(localStorage.getItem('tareas'));
+	console.log(si);
+	console.log(si.includes('<<<'));
+*/
+
 	//----------------------EventListener----------------------
 
 	//Muestra el cual estado esta activo del calendario
@@ -118,16 +124,21 @@
 		
 		if (task.classList.contains('borrar_tarea')) {
 			task.parentElement.remove();
-			console.log(task);
 		}
 	
 		e.stopPropagation();
 	}
-/*
+
+
 	function localStorageLoaded() {
-		
+		let taskCompleated = JSON.parse(localStorage.getItem('tareas2')),
+			taskProcess = getTaskLocalStorage();
+
+		console.log(taskProcess);
+		console.log(taskCompleated);
 	}
-*/
+
+
 	function addTaskLocalStorage(task) {
 		let taskList;
 
@@ -135,24 +146,18 @@
 		taskList = getTaskLocalStorage();
 
 		//Añadir la nueva tarea
-		//tasks.push(task);
+		taskList.push(task);
 
 		//Convertir de string a arreglo para el local storage y lo añade al local storage
-		//localStorage.setItem('tareas', JSON.stringify(tasks));
-		let i = 0;
-		for (let task in localStorage) { 
-			if (i < localStorage.length) {
-//				console.log(`${task}`);
-			} else {
-				return false;
-			}
-		}
+		localStorage.setItem('tareas', JSON.stringify(taskList));
+
+		console.log(taskList);
 
 	}
 
 	function getTaskLocalStorage() {
 		let tasks;
-
+		
 		//revisando los valores en el local storage
 		if (localStorage.getItem('tareas') === null) { //Si esta vacia, se agrega un arreglo vacio
 			tasks = [];
@@ -162,43 +167,6 @@
 
 		return tasks;
 	}
-
-
-/*
-	//Agrega la tarea al local storage
-	function addTaskLocalStorage(task) {
-		let tasks;
-
-		//obtiene las tareas almacenadas
-		tasks = getTaskLocalStorage();
-
-		//añade la nueva tarea
-		tasks.push(task);
-
-		//convierte de string a arreglo para el local storage
-		localStorage.setItem('process_task', JSON.stringify(tasks));
-
-	}
-	function obtenerTareasLocalStorage() {
-		let tareas;
-
-		//revisando los valores en el local storage
-		if (localStorage.getItem('tareas') === null) { //Si esta vacia, se agrega un arreglo vacio
-			tareas = [];
-		} else { //Si tiene contenido, agrega la tarea al arreglo
-			tareas = JSON.parse(localStorage.getItem('tareas'));
-		}
-
-		return tareas;
-	}
-*/
-
-
-
-
-
-
-
 
 
 
